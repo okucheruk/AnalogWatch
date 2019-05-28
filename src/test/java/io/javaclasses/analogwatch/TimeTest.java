@@ -67,7 +67,7 @@ class TimeTest {
 
         try {
 
-            new Time().withMinute(60);
+            new Time().withMinute(-1);
 
             fail("Time Minute don't throw exception.");
 

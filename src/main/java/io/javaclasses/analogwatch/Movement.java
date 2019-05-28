@@ -11,11 +11,11 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
+
 /**
  * HAND_REVOLUTION = 360 degrees
  * MINUTE_HAND_GRADUATION = HAND_REVOLUTION / 60 * MINUTES
  * HOUR_HAND_GRADUATION = HAND_REVOLUTION / 12 * HOURS + MINUTE_HAND_GRADUATION / 12
- *
  */
 package io.javaclasses.analogwatch;
 
@@ -42,7 +42,7 @@ public class Movement {
     }
 
     public double minuteHandGraduation() {
-        return time.minute() * 6;
+        return (double) time.minute() * 6;
     }
 
     public double handsGraduationDiff() {
