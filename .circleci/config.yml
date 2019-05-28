@@ -1,0 +1,70 @@
+# CircleCI 2.0 configuration file
+# Build Java Projects with Gradle
+# Written by: Oleksii Kucheruk <oleksii.kucheruk@gmail.com> on Tue May 28 2019
+---
+version: 2
+
+jobs:
+
+  validate-with-openjdk-8:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:8-jdk'}]
+    parallelism: 1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
+      - run:
+          name: "Validate code with OpenJDK 8"
+          command: ./gradlew check
+
+  test:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:8-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Test phase"
+          command: ./gradlew sonarqube
+
+  build-code:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:11-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Code Build phase"
+          command: make build
+
+  build-image:
+    working_directory: ~/work
+    docker: [{image: 'circleci/openjdk:11-jdk'}]
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: "Image Build phase"
+          command: make build-image
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - validate-with-openjdk-8
+      - test:
+          requires:
+            - validate-with-openjdk-8
+#      - build-code:
+#          requires:
+#            - test
+#      - build-image:
+#          requires:
+#            - test
+#            - build-code
+#          filters:
+#            branches:
+#              only: skaffold
+...
