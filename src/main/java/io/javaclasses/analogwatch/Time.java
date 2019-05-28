@@ -17,7 +17,7 @@ public final class Time {
 
     public Time withHour(int newhour) throws InvalidTimeException {
 
-        if ((newhour > 12) | (newhour < 1)) {
+        if ((newhour > 12) || (newhour < 1)) {
 
             throw new InvalidTimeException("Hour value is out of boundaries!");
         }
@@ -26,7 +26,7 @@ public final class Time {
 
     public Time withMinute(int newminute) throws InvalidTimeException {
 
-        if ((newminute > 59) | (newminute < 0)) {
+        if ((newminute > 59) || (newminute < 0)) {
 
             throw new InvalidTimeException("Minute value is out of boundaries!");
         }
