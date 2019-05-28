@@ -27,7 +27,7 @@ class TimeTest {
     }
 
     @Test
-    void testFailsIfTimeHourDontThrowException() {
+    void testFailsIfTimeHourBelowRangeDontThrowException() {
 
         try {
 
@@ -45,7 +45,43 @@ class TimeTest {
     }
 
     @Test
-    void testFailsIfTimeMinuteDontThrowException() {
+    void testFailsIfTimeHourAboveRangeDontThrowException() {
+
+        try {
+
+            new Time().withHour(13);
+
+            fail("Time Hour don't throw exception.");
+
+        } catch (InvalidTimeException e) {
+
+            assertEquals("Hour value is out of boundaries!",
+                         e.getMessage(),
+                         "Exception message is incorrect.");
+        }
+
+    }
+
+    @Test
+    void testFailsIfTimeMinuteBelowRangeDontThrowException() {
+
+        try {
+
+            new Time().withMinute(-1);
+
+            fail("Time Minute don't throw exception.");
+
+        } catch (InvalidTimeException e) {
+
+            assertEquals("Minute value is out of boundaries!",
+                         e.getMessage(),
+                         "Exception message is incorrect.");
+        }
+
+    }
+
+    @Test
+    void testFailsIfTimeMinuteAboveRangeDontThrowException() {
 
         try {
 
