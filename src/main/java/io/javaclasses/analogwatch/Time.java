@@ -7,7 +7,7 @@ public final class Time {
     private final int minute;
 
     public Time() {
-        this(0, 0);
+        this(12, 0);
     }
 
     private Time(int hour, int minute) {
@@ -15,11 +15,22 @@ public final class Time {
         this.minute = minute;
     }
 
-    public Time withHour(int newhour) {
+    public Time withHour(int newhour) throws InvalidTimeException {
+
+        if ((newhour > 12) | (newhour < 1)) {
+
+            throw new InvalidTimeException("Hour value is out of boundaries!");
+        }
         return new Time(newhour, this.minute);
     }
 
-    public Time withMinute(int newminute) {
+    public Time withMinute(int newminute) throws InvalidTimeException {
+
+        if ((newminute > 59) | (newminute < 0)) {
+
+            throw new InvalidTimeException("Minute value is out of boundaries!");
+        }
+
         return new Time(this.hour, newminute);
     }
 
@@ -31,7 +42,24 @@ public final class Time {
 
     public static void main(String[] args) {
 
-        System.out.println(new Time().withHour(5).withMinute(55));
+        try {
+
+            Time time =
+                    new Time()
+                            .withHour(5)
+                            .withMinute(55);
+
+        } catch (Exception e) {
+
+            System.out.println(e.getMessage());
+        }
+
+
+/*
+        Watch watch =
+                new Watch().withTime()
+*/
+
     }
 
 }

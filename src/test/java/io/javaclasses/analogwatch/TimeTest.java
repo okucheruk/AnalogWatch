@@ -4,23 +4,62 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class TimeTest {
 
     @Test
-    void testFailIfConstructedTimeIncorrect() {
+    void testFailsIfConstructedTimeIncorrect() throws InvalidTimeException {
 
-        assertEquals("00:00",
+        assertEquals("12:00",
                      new Time().toString(),
-                     "Constructed time is incorrect");
+                     "Constructed time is incorrect.");
 
         assertEquals("05:55",
-                     new Time().withHour(5).withMinute(55).toString(),
-                     "Constructed time is incorrect");
+                     new Time().withHour(5)
+                               .withMinute(55)
+                               .toString(),
+                     "Constructed time is incorrect.");
 
-        assertNotEquals("00:01",
-                     new Time().toString(),
-                     "Constructed time is incorrect");
+        assertNotEquals("12:01",
+                        new Time().toString(),
+                        "Constructed time is incorrect.");
+    }
+
+    @Test
+    void testFailsIfTimeHourDontThrowException() {
+
+        try {
+
+            new Time().withHour(0);
+
+            fail("Time Hour don't throw exception.");
+
+        } catch (InvalidTimeException e) {
+
+            assertEquals("Hour value is out of boundaries!",
+                         e.getMessage(),
+                         "Exception message is incorrect.");
+        }
+
+    }
+
+    @Test
+    void testFailsIfTimeMinuteDontThrowException() {
+
+        try {
+
+            new Time().withMinute(60);
+
+            fail("Time Minute don't throw exception.");
+
+        } catch (InvalidTimeException e) {
+
+            assertEquals("Minute value is out of boundaries!",
+                         e.getMessage(),
+                         "Exception message is incorrect.");
+        }
+
     }
 
 }
