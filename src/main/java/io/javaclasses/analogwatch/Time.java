@@ -14,48 +14,100 @@
 
 package io.javaclasses.analogwatch;
 
+/**
+ * <code>Time</code> is the immutable time object that represents a specified time, often viewed as
+ * hour:minute. Time is represented to minutes precision of 12-hour time format.
+ * For example, the value between "01:00" and "12:59" can be stored in a <code>Time</code>.
+ */
 public final class Time {
 
+    /*
+     * Time hour field. Value range is [1-12]
+     */
     private final int hour;
 
+    /*
+     * Time minute field. Value range is [0-59]
+     */
     private final int minute;
 
+    /**
+     * Default constructor.
+     * Creates <code>Time</code> object with 12:00 hour:minute values.
+     */
     public Time() {
         this(12, 0);
     }
 
+    /*
+     * Secondary constructor. (For implicit invocation by factory methods.)
+     * Creates <code>Time</code> object with specified hour:minute values.
+     */
     private Time(int hour, int minute) {
         this.hour = hour;
         this.minute = minute;
     }
 
+    /**
+     * Returns new instance of <code>Time</code> with new hour value and preserved old minute value.
+     *
+     * @param newhour
+     *         Hour time value.
+     * @return A new instance of <code>Time</code>.
+     * @throws InvalidTimeException
+     *         If hour value is out of range [1-12].
+     */
     public Time withHour(int newhour) throws InvalidTimeException {
 
         if ((newhour > 12) || (newhour < 1)) {
 
-            throw new InvalidTimeException("Hour value is out of boundaries!");
+            throw new InvalidTimeException("Hour value is out of range [1-12]!");
         }
         return new Time(newhour, this.minute);
     }
 
+    /**
+     * Returns new instance of <code>Time</code> with new minute value and preserved old hour value.
+     *
+     * @param newminute
+     *         Minute time value.
+     * @return A new instance of <code>Time</code>.
+     * @throws InvalidTimeException
+     *         If minute value is out of range [0-59].
+     */
     public Time withMinute(int newminute) throws InvalidTimeException {
 
         if ((newminute > 59) || (newminute < 0)) {
 
-            throw new InvalidTimeException("Minute value is out of boundaries!");
+            throw new InvalidTimeException("Minute value is out of range [0-59]!");
         }
 
         return new Time(this.hour, newminute);
     }
 
-    public int hour() {
+    /**
+     * Returns <code>Time</code> hour value.
+     *
+     * @return hour value.
+     */
+    int hour() {
         return hour;
     }
 
-    public int minute() {
+    /**
+     * Returns <code>Time</code> minute value.
+     *
+     * @return hour value.
+     */
+    int minute() {
         return minute;
     }
 
+    /**
+     * Outputs this time as a {@code String} of the 12-hour format ({@code 12:59}).
+     *
+     * @return a string representation of this time, not null.
+     */
     @Override
     public String toString() {
 

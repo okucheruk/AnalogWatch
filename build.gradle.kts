@@ -52,12 +52,12 @@ repositories {
 }
 
 dependencies {
-    testCompile("org.junit.jupiter:junit-jupiter-api:" + junitApiVersion)
-    testImplementation("org.junit.jupiter:junit-jupiter-api:" + junitApiVersion)
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:" + junitApiVersion)
-    compile("org.slf4j:slf4j-api:" + slf4jApiVersion)
-    compile("org.slf4j:slf4j-log4j12:"+ slf4jApiVersion)
-    implementation("com.google.guava:guava:" + guavaVersion)
+    testCompile("org.junit.jupiter:junit-jupiter-api:$junitApiVersion")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitApiVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitApiVersion")
+    compile("org.slf4j:slf4j-api:$slf4jApiVersion")
+    compile("org.slf4j:slf4j-log4j12:$slf4jApiVersion")
+    implementation("com.google.guava:guava:$guavaVersion")
 }
 
 checkstyle {

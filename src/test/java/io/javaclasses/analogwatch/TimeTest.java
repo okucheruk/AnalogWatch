@@ -37,7 +37,7 @@ class TimeTest {
 
         } catch (InvalidTimeException e) {
 
-            assertEquals("Hour value is out of boundaries!",
+            assertEquals("Hour value is out of range [1-12]!",
                          e.getMessage(),
                          "Exception message is incorrect.");
         }
@@ -55,7 +55,7 @@ class TimeTest {
 
         } catch (InvalidTimeException e) {
 
-            assertEquals("Hour value is out of boundaries!",
+            assertEquals("Hour value is out of range [1-12]!",
                          e.getMessage(),
                          "Exception message is incorrect.");
         }
@@ -73,7 +73,7 @@ class TimeTest {
 
         } catch (InvalidTimeException e) {
 
-            assertEquals("Minute value is out of boundaries!",
+            assertEquals("Minute value is out of range [0-59]!",
                          e.getMessage(),
                          "Exception message is incorrect.");
         }
@@ -91,7 +91,7 @@ class TimeTest {
 
         } catch (InvalidTimeException e) {
 
-            assertEquals("Minute value is out of boundaries!",
+            assertEquals("Minute value is out of range [0-59]!",
                          e.getMessage(),
                          "Exception message is incorrect.");
         }

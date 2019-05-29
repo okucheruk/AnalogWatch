@@ -23,7 +23,7 @@ package io.javaclasses.analogwatch;
  *
  */
 
-public class Movement {
+class Movement {
 
     public double hourHandGraduation(Time time) {
 

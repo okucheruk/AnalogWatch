@@ -21,7 +21,7 @@ package io.javaclasses.analogwatch;
  * <p>The class {@code AnalogWatchException} and any subclasses that are not also subclasses of
  * {@link RuntimeException} are <em>checked exceptions</em>. Checked exceptions need to be declared
  * in a method or constructor's {@code throws} clause if they can be thrown by the execution of the
- * method or constructor and propagate outsid the method or constructor boundary.
+ * method or constructor and propagate outside the method or constructor boundary.
  *
  * @author Oleksii Kucheruk
  */
