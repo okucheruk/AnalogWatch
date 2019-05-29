@@ -15,12 +15,8 @@
 package io.javaclasses.analogwatch;
 
 /**
- * <code>Movement</code> provides methods for calculating angle between analog watch hour and
- * minute hands of specified hands movement time.
- *
- * <p>
- * <code>Movement</code> helps you to define watch hands graduation, angle between hour and minute
- * hands.
+ * <code>Movement</code> provides methods for calculating graduation of analog watch hour and
+ * minute hands of specified hands movement time and angle between them as well.
  *
  * <p>
  * Calculation details:
