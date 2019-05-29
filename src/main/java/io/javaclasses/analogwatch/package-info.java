@@ -13,10 +13,11 @@
  */
 
 /**
- * <p>Provides interface for calculating angle between analog watch hour and minute hands of
- * specified hands movement time.
+ * <p>Provides interface for calculating graduation of analog watch hour and minute hands of
+ * specified hands movement time and angle between them as well.
+ * <p>
  * This package is intended for engineerical use.
- * These classes are immutable.</p>
+ *<p>
+ * These classes are immutable.
  */
-
 package io.javaclasses.analogwatch;
