@@ -18,7 +18,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 class MovementTest {
+
+    private static final Logger logger = LoggerFactory.getLogger(MovementTest.class);
 
     @Test
     void testFailsIfHourHandGraduationIncorrect() throws InvalidTimeException {
@@ -32,13 +37,18 @@ class MovementTest {
                                 .withHour(h)
                                 .withMinute(m);
 
+                if (logger.isDebugEnabled()) {
+
+                    logger.debug(time.toString()
+                                         + " hour_graduation="
+                                         + new Movement().hourHandGraduation(time));
+                }
+
                 assertEquals((h * 60 + m) * 0.5 % 360,
                              new Movement().hourHandGraduation(time),
                              "Hour hand graduation is incorrect.");
-
             }
         }
-
     }
 
     @Test
@@ -51,9 +61,15 @@ class MovementTest {
                             .withHour(12)
                             .withMinute(m);
 
+            if (logger.isDebugEnabled()) {
+
+                logger.debug(time.toString()
+                                     + " minute_graduation="
+                                     + new Movement().minuteHandGraduation(time));
+            }
             assertEquals((m * 6),
                          new Movement().minuteHandGraduation(time),
-                    "Minute hand graduation is incorrect.");
+                         "Minute hand graduation is incorrect.");
         }
     }
 
