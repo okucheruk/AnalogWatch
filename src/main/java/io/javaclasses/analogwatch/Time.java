@@ -50,6 +50,7 @@ public final class Time {
 
     /**
      * Returns new instance of <code>Time</code> with new hour value and preserved old minute value.
+     * Method throws {@link InvalidTimeException} for out of range values.
      *
      * @param newhour
      *         Hour time value.
@@ -68,6 +69,7 @@ public final class Time {
 
     /**
      * Returns new instance of <code>Time</code> with new minute value and preserved old hour value.
+     * Method throws {@link InvalidTimeException} for out of range values.
      *
      * @param newminute
      *         Minute time value.

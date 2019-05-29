@@ -32,7 +32,7 @@ class MovementTest {
                                 .withHour(h)
                                 .withMinute(m);
 
-                assertEquals((h * 30 + m * 0.5) % 360,
+                assertEquals((h * 60 + m) * 0.5 % 360,
                              new Movement().hourHandGraduation(time),
                              "Hour hand graduation is incorrect.");
 

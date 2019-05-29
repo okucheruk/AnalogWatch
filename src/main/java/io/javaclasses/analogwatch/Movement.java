@@ -15,26 +15,65 @@
 package io.javaclasses.analogwatch;
 
 /**
+ * <code>Movement</code> provides methods for calculating angle between analog watch hour and
+ * minute hands of specified hands movement time.
  *
+ * <p>
+ * <code>Movement</code> helps you to define watch hands graduation, angle between hour and minute
+ * hands.
  *
- * HAND_REVOLUTION = 360 degrees
- * MINUTE_HAND_GRADUATION = HAND_REVOLUTION / 60 * MINUTES
- * HOUR_HAND_GRADUATION = HAND_REVOLUTION / 12 * HOURS + MINUTE_HAND_GRADUATION / 12
- *
+ * <p>
+ * Calculation details:
+ * <blockquote>
+ * Watch hands revolution is 360 degrees.
+ * <p>
+ * One graduation of minute hand is revolution devided into 60 intervals (minutes).
+ * <p>
+ * One graduation of hour hand is revolution devided into 720 intervals (12 hours * 60 minutes).
+ * </blockquote>
  */
 
-class Movement {
+public class Movement {
 
+    /*
+     * 360 degrees / 60 minutes = 6 degrees
+     */
+    private final double ONE_MINUTEHAND_GRADUATION = 6;
+
+    /*
+     * 360 degrees / (12 hours * 60 minutes) = 0.5 degrees
+     */
+    private final double ONE_HOURHAND_GRADUATION = 0.5;
+
+    /**
+     * Returns hour hand graduation value of specified time.
+     *
+     * @param time
+     *         Time.
+     * @return Hour hand graduation.
+     */
     public double hourHandGraduation(Time time) {
-
-        // (HOUR_HAND_GRADUATION + MINUTE_HAND_GRADUATION/12) mod HAND_REVOLUTION
-        return ((time.hour() * 60 + time.minute()) * 0.5) % 360;
+        return ((time.hour() * 60 + time.minute()) * ONE_HOURHAND_GRADUATION) % 360;
     }
 
+    /**
+     * Returns minute hand graduation value of specified time.
+     *
+     * @param time
+     *         Time.
+     * @return Minute hand graduation.
+     */
     public double minuteHandGraduation(Time time) {
-        return (double) time.minute() * 6;
+        return (double) time.minute() * ONE_MINUTEHAND_GRADUATION;
     }
 
+    /**
+     * Returns angle between hour and minute hands of specified time.
+     *
+     * @param time
+     *         Time.
+     * @return Angle between hour and minute hands
+     */
     public double handsGraduationDiff(Time time) {
         return Math.abs(hourHandGraduation(time) - minuteHandGraduation(time));
     }
