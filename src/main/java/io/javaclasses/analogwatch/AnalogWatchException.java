@@ -14,6 +14,17 @@
 
 package io.javaclasses.analogwatch;
 
+/**
+ * The class {@code AnalogWatchException} and its subclasses are a form of {@code Throwable} that
+ * indicates conditions that a reasonable AnalogWatch application might want to catch.
+ *
+ * <p>The class {@code AnalogWatchException} and any subclasses that are not also subclasses of
+ * {@link RuntimeException} are <em>checked exceptions</em>. Checked exceptions need to be declared
+ * in a method or constructor's {@code throws} clause if they can be thrown by the execution of the
+ * method or constructor and propagate outsid the method or constructor boundary.
+ *
+ * @author Oleksii Kucheruk
+ */
 class AnalogWatchException extends Exception {
 
     AnalogWatchException(String message) {

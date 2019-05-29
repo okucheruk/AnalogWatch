@@ -12,12 +12,16 @@
  * the License.
  */
 
+package io.javaclasses.analogwatch;
+
 /**
+ *
+ *
  * HAND_REVOLUTION = 360 degrees
  * MINUTE_HAND_GRADUATION = HAND_REVOLUTION / 60 * MINUTES
  * HOUR_HAND_GRADUATION = HAND_REVOLUTION / 12 * HOURS + MINUTE_HAND_GRADUATION / 12
+ *
  */
-package io.javaclasses.analogwatch;
 
 public class Movement {
 
