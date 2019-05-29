@@ -14,9 +14,21 @@
 
 package io.javaclasses.analogwatch;
 
-class InvalidTimeException extends AnalogWatchException {
+/**
+ * The class {@code InvalidTimeException} indicates conditions of specifying invalid time values for
+ * time hour or minute.
+ */
+final class InvalidTimeException extends AnalogWatchException {
 
-    InvalidTimeException(String s) {
-        super(s);
+    /**
+     * Constructs a new exception with the specified detail message.
+     *
+     * @param message
+     *         The detail message. The detail message is saved for later retrieval by the
+     *         getMessage() method.
+     */
+    InvalidTimeException(String message) {
+        super(message);
     }
+
 }
