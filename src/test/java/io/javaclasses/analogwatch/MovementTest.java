@@ -33,8 +33,7 @@ class MovementTest {
                                 .withMinute(m);
 
                 assertEquals((h * 30 + m * 0.5) % 360,
-                             new Movement().withTime(time)
-                                           .hourHandGraduation(),
+                             new Movement().hourHandGraduation(time),
                              "Hour hand graduation is incorrect.");
 
             }
@@ -53,23 +52,21 @@ class MovementTest {
                             .withMinute(m);
 
             assertEquals((m * 6),
-                         new Movement().withTime(time)
-                                       .minuteHandGraduation(),
-                         "Minute hand graduation is incorrect.");
+                         new Movement().minuteHandGraduation(time),
+                    "Minute hand graduation is incorrect.");
         }
     }
 
     @Test
-    void testFailsIfhandsGraduationDiffIncorrect() throws InvalidTimeException{
+    void testFailsIfHandsGraduationDiffIncorrect() throws InvalidTimeException {
 
         Time time =
                 new Time()
                         .withHour(6)
                         .withMinute(0);
 
-        assertEquals( 180,
-                     new Movement().withTime(time)
-                                   .handsGraduationDiff(),
+        assertEquals(180,
+                     new Movement().handsGraduationDiff(time),
                      "Angle between hour and minute hands is incorrect.");
     }
 }

@@ -21,32 +21,18 @@ package io.javaclasses.analogwatch;
 
 public class Movement {
 
-    private final Time time;
-
-    public Movement() {
-        this(new Time());
-    }
-
-    private Movement(Time time) {
-        this.time = time;
-    }
-
-    public Movement withTime(Time time) {
-        return new Movement(time);
-    }
-
-    public double hourHandGraduation() {
+    public double hourHandGraduation(Time time) {
 
         // (HOUR_HAND_GRADUATION + MINUTE_HAND_GRADUATION/12) mod HAND_REVOLUTION
         return ((time.hour() * 60 + time.minute()) * 0.5) % 360;
     }
 
-    public double minuteHandGraduation() {
+    public double minuteHandGraduation(Time time) {
         return (double) time.minute() * 6;
     }
 
-    public double handsGraduationDiff() {
-        return Math.abs(hourHandGraduation() - minuteHandGraduation());
+    public double handsGraduationDiff(Time time) {
+        return Math.abs(hourHandGraduation(time) - minuteHandGraduation(time));
     }
 
 }
