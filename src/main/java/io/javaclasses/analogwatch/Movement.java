@@ -31,16 +31,6 @@ package io.javaclasses.analogwatch;
 
 public class Movement {
 
-    /*
-     * 360 degrees / 60 minutes = 6 degrees
-     */
-    private final double ONE_MINUTEHAND_GRADUATION = 6;
-
-    /*
-     * 360 degrees / (12 hours * 60 minutes) = 0.5 degrees
-     */
-    private final double ONE_HOURHAND_GRADUATION = 0.5;
-
     /**
      * Returns hour hand graduation value of specified time.
      *
@@ -49,7 +39,10 @@ public class Movement {
      * @return Hour hand graduation.
      */
     public double hourHandGraduation(Time time) {
-        return ((time.hour() * 60 + time.minute()) * ONE_HOURHAND_GRADUATION) % 360;
+        /*
+         * ONE_HOURHAND_GRADUATION = 360 degrees / (12 hours * 60 minutes) = 0.5 degrees
+         */
+        return ((time.hour() * 60 + time.minute()) * 0.5) % 360;
     }
 
     /**
@@ -60,7 +53,10 @@ public class Movement {
      * @return Minute hand graduation.
      */
     public double minuteHandGraduation(Time time) {
-        return (double) time.minute() * ONE_MINUTEHAND_GRADUATION;
+        /*
+         * ONE_MINUTEHAND_GRADUATION = 360 degrees / 60 minutes = 6 degrees
+         */
+        return (double) time.minute() * 6;
     }
 
     /**
