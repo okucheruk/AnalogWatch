@@ -14,12 +14,17 @@
 
 package io.javaclasses.analogwatch;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * <code>Time</code> is the immutable time object that represents a specified time, often viewed as
  * hour:minute. Time is represented to minutes precision of 12-hour time format.
  * For example, the value between "01:00" and "12:59" can be stored in a <code>Time</code>.
  */
 public final class Time {
+
+    private static final Logger logger = LoggerFactory.getLogger(Time.class);
 
     /*
      * Time hour field. Value range is [1-12]
@@ -44,8 +49,13 @@ public final class Time {
      * Creates <code>Time</code> object with specified hour:minute values.
      */
     private Time(int hour, int minute) {
+
         this.hour = hour;
         this.minute = minute;
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Time instance constructed " + hour + ":" + minute);
+        }
     }
 
     /**

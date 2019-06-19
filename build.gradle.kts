@@ -57,7 +57,7 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitApiVersion")
     compile("org.slf4j:slf4j-api:$slf4jApiVersion")
     compile("org.slf4j:slf4j-log4j12:$slf4jApiVersion")
-    implementation("com.google.guava:guava:$guavaVersion")
+    implementation("com.google.guava:guava-testlib:$guavaVersion")
 }
 
 checkstyle {

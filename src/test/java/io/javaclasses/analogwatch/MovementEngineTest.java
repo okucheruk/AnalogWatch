@@ -18,14 +18,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.google.common.testing.NullPointerTester;
 
-class MovementTest {
+class MovementEngineTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(MovementTest.class);
-
-    @Test
     void testFailsIfHourHandGraduationIncorrect() throws InvalidTimeException {
 
         for (int h = 1; h < 13; h++) {
@@ -37,21 +33,13 @@ class MovementTest {
                                 .withHour(h)
                                 .withMinute(m);
 
-                if (logger.isDebugEnabled()) {
-
-                    logger.debug(time.toString()
-                                         + " hour_graduation="
-                                         + new Movement().hourHandGraduation(time));
-                }
-
                 assertEquals((h * 60 + m) * 0.5 % 360,
-                             new Movement().hourHandGraduation(time),
+                             new MovementEngine().hourHandGraduation(time),
                              "Hour hand graduation is incorrect.");
             }
         }
     }
 
-    @Test
     void testFailsIfMinuteHandGraduationIncorrect() throws InvalidTimeException {
 
         for (int m = 0; m < 60; m++) {
@@ -61,28 +49,19 @@ class MovementTest {
                             .withHour(12)
                             .withMinute(m);
 
-            if (logger.isDebugEnabled()) {
-
-                logger.debug(time.toString()
-                                     + " minute_graduation="
-                                     + new Movement().minuteHandGraduation(time));
-            }
             assertEquals((m * 6),
-                         new Movement().minuteHandGraduation(time),
+                         new MovementEngine().minuteHandGraduation(time),
                          "Minute hand graduation is incorrect.");
         }
     }
 
+
+
     @Test
-    void testFailsIfHandsGraduationDiffIncorrect() throws InvalidTimeException {
+    void testFailsIfMovementThrowNPE() {
 
-        Time time =
-                new Time()
-                        .withHour(6)
-                        .withMinute(0);
-
-        assertEquals(180,
-                     new Movement().handsGraduationDiff(time),
-                     "Angle between hour and minute hands is incorrect.");
+        new NullPointerTester()
+                .testAllPublicInstanceMethods(MovementEngine.class);
     }
+
 }

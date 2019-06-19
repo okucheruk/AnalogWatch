@@ -14,8 +14,11 @@
 
 package io.javaclasses.analogwatch;
 
+import com.google.common.base.Preconditions;
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 /**
- * <code>Movement</code> provides methods for calculating graduation of analog watch hour and
+ * <code>MovementEngine</code> provides methods for calculating graduation of analog watch hour and
  * minute hands of specified hands movement time and angle between them as well.
  *
  * <p>
@@ -29,7 +32,7 @@ package io.javaclasses.analogwatch;
  * </blockquote>
  */
 
-public class Movement {
+class MovementEngine {
 
     /**
      * Returns hour hand graduation value of specified time.
@@ -38,7 +41,10 @@ public class Movement {
      *         Time.
      * @return Hour hand graduation.
      */
-    public double hourHandGraduation(Time time) {
+    public double hourHandGraduation(@NonNull Time time) {
+
+        Preconditions.checkNotNull(time, "Time must be specified.");
+
         /*
          * ONE_HOURHAND_GRADUATION = 360 degrees / (12 hours * 60 minutes) = 0.5 degrees
          */
@@ -57,17 +63,6 @@ public class Movement {
          * ONE_MINUTEHAND_GRADUATION = 360 degrees / 60 minutes = 6 degrees
          */
         return (double) time.minute() * 6;
-    }
-
-    /**
-     * Returns angle between hour and minute hands of specified time.
-     *
-     * @param time
-     *         Time.
-     * @return Angle between hour and minute hands
-     */
-    public double handsGraduationDiff(Time time) {
-        return Math.abs(hourHandGraduation(time) - minuteHandGraduation(time));
     }
 
 }
