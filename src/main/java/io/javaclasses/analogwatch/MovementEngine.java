@@ -14,21 +14,18 @@
 
 package io.javaclasses.analogwatch;
 
-import com.google.common.base.Preconditions;
-import org.checkerframework.checker.nullness.qual.NonNull;
-
 /**
  * <code>MovementEngine</code> provides methods for calculating graduation of analog watch hour and
- * minute hands of specified hands movement time and angle between them as well.
+ * minute hands of specified hands movement time.
  *
  * <p>
  * Calculation details:
  * <blockquote>
  * Watch hands revolution is 360 degrees.
  * <p>
- * One graduation of minute hand is revolution devided into 60 intervals (minutes).
+ * One graduation of minute hand is revolution divided into 60 intervals (minutes).
  * <p>
- * One graduation of hour hand is revolution devided into 720 intervals (12 hours * 60 minutes).
+ * One graduation of hour hand is revolution divided into 720 intervals (12 hours * 60 minutes).
  * </blockquote>
  */
 
@@ -41,10 +38,7 @@ class MovementEngine {
      *         Time.
      * @return Hour hand graduation.
      */
-    public double hourHandGraduation(@NonNull Time time) {
-
-        Preconditions.checkNotNull(time, "Time must be specified.");
-
+    public double hourHandGraduation(Time time) {
         /*
          * ONE_HOURHAND_GRADUATION = 360 degrees / (12 hours * 60 minutes) = 0.5 degrees
          */

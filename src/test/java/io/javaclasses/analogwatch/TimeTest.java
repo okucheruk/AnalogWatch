@@ -69,7 +69,7 @@ class TimeTest {
 
             new Time().withMinute(-1);
 
-            fail("Time Minute don't throw exception.");
+            fail("Time Minute do not throws exception.");
 
         } catch (InvalidTimeException e) {
 
@@ -87,7 +87,7 @@ class TimeTest {
 
             new Time().withMinute(60);
 
-            fail("Time Minute don't throw exception.");
+            fail("Time Minute do not throws exception.");
 
         } catch (InvalidTimeException e) {
 

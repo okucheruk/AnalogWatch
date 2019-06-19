@@ -53,6 +53,7 @@ repositories {
 
 dependencies {
     testCompile("org.junit.jupiter:junit-jupiter-api:$junitApiVersion")
+    testCompile("org.junit.jupiter:junit-jupiter-params:$junitApiVersion")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitApiVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitApiVersion")
     compile("org.slf4j:slf4j-api:$slf4jApiVersion")

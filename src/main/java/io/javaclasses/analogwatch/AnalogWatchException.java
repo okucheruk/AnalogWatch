@@ -15,7 +15,7 @@
 package io.javaclasses.analogwatch;
 
 /**
- * The class {@code AnalogWatchException} and its subclasses are a form of {@code Throwable} that
+ * The class {@code AnalogWatchException} and its subclasses are a form of {@code Exception} that
  * indicates conditions that a AnalogWatch application might want to catch.
  *
  * <p>The class {@code AnalogWatchException} and any subclasses that are not also subclasses of

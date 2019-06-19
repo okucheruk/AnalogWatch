@@ -1,5 +1,9 @@
 package io.javaclasses.analogwatch;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
+import static com.google.common.base.Preconditions.checkNotNull;
+
 public class AnalogWatchUtils {
 
     /**
@@ -9,7 +13,9 @@ public class AnalogWatchUtils {
      *         Time.
      * @return Angle between hour and minute hands
      */
-    public double handsGraduationDiff(Time time) {
+    public double handsGraduationDiff(@NonNull Time time) {
+
+        checkNotNull(time, "Time must be specified!");
 
         MovementEngine movementEngine =
                 new MovementEngine();

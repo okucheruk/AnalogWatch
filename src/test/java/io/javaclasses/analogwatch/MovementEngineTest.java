@@ -19,49 +19,76 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.google.common.testing.NullPointerTester;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 class MovementEngineTest {
 
-    void testFailsIfHourHandGraduationIncorrect() throws InvalidTimeException {
+    @ParameterizedTest
+    @MethodSource("provideTimeAndHourHandGraduation")
+    void testFailsIfHourHandGraduationIncorrect(Time time, double graduation) {
 
-        for (int h = 1; h < 13; h++) {
-
-            for (int m = 0; m < 60; m++) {
-
-                Time time =
-                        new Time()
-                                .withHour(h)
-                                .withMinute(m);
-
-                assertEquals((h * 60 + m) * 0.5 % 360,
-                             new MovementEngine().hourHandGraduation(time),
-                             "Hour hand graduation is incorrect.");
-            }
-        }
+        assertEquals(graduation,
+                     new MovementEngine().hourHandGraduation(time),
+                     "Hour hand graduation is incorrect.");
     }
 
-    void testFailsIfMinuteHandGraduationIncorrect() throws InvalidTimeException {
+    private static Stream<Arguments> provideTimeAndHourHandGraduation()
+            throws InvalidTimeException {
 
-        for (int m = 0; m < 60; m++) {
-
-            Time time =
-                    new Time()
-                            .withHour(12)
-                            .withMinute(m);
-
-            assertEquals((m * 6),
-                         new MovementEngine().minuteHandGraduation(time),
-                         "Minute hand graduation is incorrect.");
-        }
+        return Stream.of(
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(0), 0),
+                Arguments.of(new Time().withHour(3)
+                                       .withMinute(0), 90),
+                Arguments.of(new Time().withHour(6)
+                                       .withMinute(0), 180),
+                Arguments.of(new Time().withHour(9)
+                                       .withMinute(0), 270),
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(1), 0.5),
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(2), 1.0)
+        );
     }
 
+    @ParameterizedTest
+    @MethodSource("provideTimeAndMinuteHandGraduation")
+    void testFailsIfMinuteHandGraduationIncorrect(Time time, double graduation) {
 
+        assertEquals(graduation,
+                     new MovementEngine().minuteHandGraduation(time),
+                     "Minute hand graduation is incorrect.");
+    }
+
+    private static Stream<Arguments> provideTimeAndMinuteHandGraduation()
+            throws InvalidTimeException {
+
+        return Stream.of(
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(0), 0),
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(15), 90),
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(30), 180),
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(45), 270),
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(1), 6),
+                Arguments.of(new Time().withHour(12)
+                                       .withMinute(2), 12)
+        );
+    }
 
     @Test
     void testFailsIfMovementThrowNPE() {
 
+        //noinspection UnstableApiUsage
         new NullPointerTester()
-                .testAllPublicInstanceMethods(MovementEngine.class);
+                .testAllPublicInstanceMethods(new MovementEngine());
     }
 
 }
