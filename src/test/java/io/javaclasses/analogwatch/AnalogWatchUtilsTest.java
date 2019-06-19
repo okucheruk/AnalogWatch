@@ -1,5 +1,6 @@
 package io.javaclasses.analogwatch;
 
+import com.google.common.testing.NullPointerTester;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -56,6 +57,16 @@ class AnalogWatchUtilsTest {
                          npe.getMessage(),
                          "Exception message is incorrect.");
         }
+    }
+
+    @Test
+    void testFailsIfAnalogWatchUtilsThrowsNPE() {
+
+        //noinspection UnstableApiUsage
+        NullPointerTester tester = new NullPointerTester();
+
+        tester.testAllPublicConstructors(AnalogWatchUtils.class);
+        tester.testAllPublicInstanceMethods(new AnalogWatchUtils());
     }
 
 }

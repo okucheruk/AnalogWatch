@@ -84,11 +84,13 @@ class MovementEngineTest {
     }
 
     @Test
-    void testFailsIfMovementThrowNPE() {
+    void testFailsIfMovementEngineThrowsNPE() {
 
         //noinspection UnstableApiUsage
-        new NullPointerTester()
-                .testAllPublicInstanceMethods(new MovementEngine());
+        NullPointerTester tester = new NullPointerTester();
+
+        tester.testAllPublicConstructors(MovementEngine.class);
+        tester.testAllPublicInstanceMethods(new MovementEngine());
     }
 
 }

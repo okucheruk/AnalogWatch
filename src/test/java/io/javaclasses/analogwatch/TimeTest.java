@@ -1,5 +1,6 @@
 package io.javaclasses.analogwatch;
 
+import com.google.common.testing.NullPointerTester;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -96,6 +97,16 @@ class TimeTest {
                          "Exception message is incorrect.");
         }
 
+    }
+
+    @Test
+    void testFailsIfTimeThrowsNPE() {
+
+        //noinspection UnstableApiUsage
+        NullPointerTester tester = new NullPointerTester();
+
+        tester.testAllPublicConstructors(Time.class);
+        tester.testAllPublicInstanceMethods(new Time());
     }
 
 }
